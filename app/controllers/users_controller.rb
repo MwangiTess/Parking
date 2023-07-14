@@ -1,14 +1,17 @@
-class UsersController < ApplicationController
+require 'jwt'
 
+class UsersController < ApplicationController
   def redirect_with_token
     # Logic to handle the code scanning and redirection
     # Retrieve necessary information from the scanned code
 
-    # Assuming you have a QRCode model and qr_code_data represents the scanned data
-    qrcode = QRCode.find_by(data: qr_code_data)
+    scanned_data = params[:scanned_data]
 
-    if qrcode
-      user_id = qrcode.user_id
+    # Assuming you have a QRCode model and qr_code_data represents the scanned data
+    qr_code = QrCode.find_by(data: scanned_data)
+
+    if qr_code
+      user_id = qr_code.user_id
 
       # Generate JWT token
       token = generate_jwt_token(user_id)
@@ -47,5 +50,23 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:carNumberPlate, :ownerNames, :phoneNumber)
+  end
+  def qr_code_data
+    params[:qr_code_data] # Update with the actual parameter name representing the scanned data
+  end
+
+  def generate_jwt_token(user_id)
+    # Generate a JWT token based on the user ID
+    secret_key = Rails.application.credentials.secret_key_base
+    payload = { user_id: user_id }
+    JWT.encode(payload, secret_key, 'HS256')
+  end
+
+  def verify_jwt_token(token)
+    # Verify and decode the JWT token
+    secret_key = Rails.application.credentials.secret_key_base
+    JWT.decode(token, secret_key, true, algorithm: 'HS256').first
+  rescue JWT::DecodeError
+    nil
   end
 end

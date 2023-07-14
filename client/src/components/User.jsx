@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 function User() {
   const [carNumberPlate, setCarNumberPlate] = useState('');
   const [ownerNames, setOwnerNames] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (carNumberPlate && ownerNames && phoneNumber) {
-      // Implement logic for processing the form data, such as sending it to the server
-      alert('Form submitted successfully!');
+      try {
+        await axios.post('/users/submit_form', {
+          carNumberPlate,
+          ownerNames,
+          phoneNumber,
+        });
+        alert('Form submitted successfully!');
+        // Reset the form
+        setCarNumberPlate('');
+        setOwnerNames('');
+        setPhoneNumber('');
+      } catch (error) {
+        alert('An error occurred while submitting the form.');
+        console.error(error);
+      }
     } else {
       alert('Please fill in all the required fields.');
     }
