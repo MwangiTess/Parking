@@ -6,7 +6,4 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-car1 = Car.create(name: "Trevor", model: "Land-cruiser")
-car2 = Car.create(name: "Ann", model: "Premio")
-car3 = Car.create(name: "Tessellator", model: "Audi")
 
