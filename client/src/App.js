@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   const [carNumberPlate, setCarNumberPlate] = useState('');
@@ -27,6 +29,7 @@ function App() {
             className="form-control"
             value={carNumberPlate}
             onChange={(e) => setCarNumberPlate(e.target.value)}
+            required
           />
         </div>
 
@@ -37,6 +40,7 @@ function App() {
             className="form-control"
             value={ownerNames}
             onChange={(e) => setOwnerNames(e.target.value)}
+            required
           />
         </div>
 
@@ -47,6 +51,7 @@ function App() {
             className="form-control"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            required
           />
         </div>
 
