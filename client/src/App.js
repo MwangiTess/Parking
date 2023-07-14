@@ -3,11 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import User from './components/User';
 import Admin from './components/Admin';
+import Navigation from './components/Navigation';
 
 function App() {
   return (
     <>
-
+      <Navigation />
       <div className="container my-4">
         <Routes>
           <Route path="/" element={<Home />} />

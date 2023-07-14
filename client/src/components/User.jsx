@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 function User() {
   const [carNumberPlate, setCarNumberPlate] = useState('');
@@ -58,12 +57,6 @@ function User() {
           Submit
         </button>
       </form>
-
-      <div className="mt-4">
-        <Link to="/admin" className="btn btn-secondary">
-          Go to Admin Panel
-        </Link>
-      </div>
     </div>
   );
 }

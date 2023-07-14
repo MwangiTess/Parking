@@ -11,7 +11,7 @@ function Navigation() {
             <Link to="/" className="nav-link">Home</Link>
           </li>
           <li className="nav-item">
-            <Link to="/user" className="nav-link">User</Link>
+            <Link to="/about" className="nav-link">About</Link>
           </li>
           <li className="nav-item">
             <Link to="/admin" className="nav-link">Admin Panel</Link>
