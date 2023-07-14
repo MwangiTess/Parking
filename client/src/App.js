@@ -1,69 +1,59 @@
 import React, { useState } from 'react';
-import QRCode from 'qrcode.react';
-
-import './App.css';
 
 function App() {
   const [carNumberPlate, setCarNumberPlate] = useState('');
   const [ownerNames, setOwnerNames] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [generatedQRCode, setGeneratedQRCode] = useState('');
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
-    // Validate the form inputs here (e.g., check for empty fields)
-
-    // Generate the QR code value by combining the inputs
-    const qrCodeValue = carNumberPlate + ownerNames + phoneNumber;
-
-    // Update the generated QR code state
-    setGeneratedQRCode(qrCodeValue);
+    if (carNumberPlate && ownerNames && phoneNumber) {
+      // Implement logic for processing the form data, such as sending it to the server
+      alert('Form submitted successfully!');
+    } else {
+      alert('Please fill in all the required fields.');
+    }
   };
 
   return (
-    <div className="App">
-      <h1>Parking Application</h1>
+    <div className="container">
+      <h1 className="my-4">Parking Application</h1>
+
       <form onSubmit={handleFormSubmit}>
-        <label>
-          Car Number Plate:
+        <div className="mb-3">
+          <label className="form-label">Car Number Plate:</label>
           <input
             type="text"
+            className="form-control"
             value={carNumberPlate}
             onChange={(e) => setCarNumberPlate(e.target.value)}
-            required
           />
-        </label>
-        <br />
-        <label>
-          Owner's Names:
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Owner's Official Names:</label>
           <input
             type="text"
+            className="form-control"
             value={ownerNames}
             onChange={(e) => setOwnerNames(e.target.value)}
-            required
           />
-        </label>
-        <br />
-        <label>
-          Phone Number:
+        </div>
+
+        <div className="mb-3">
+          <label className="form-label">Phone Number:</label>
           <input
             type="text"
+            className="form-control"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            required
           />
-        </label>
-        <br />
-        <button type="submit">Generate QR Code</button>
-      </form>
-
-      {generatedQRCode && (
-        <div className="qrcode-container">
-          <h2>Generated QR Code</h2>
-          <QRCode value={generatedQRCode} size={200} />
         </div>
-      )}
+
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
     </div>
   );
 }
