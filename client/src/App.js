@@ -1,36 +1,23 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Register from './components/User';
-import AdminPanel from './AdminPanel';
+import { Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Navigation from './components/Navigation';
+import User from './components/User';
+import Admin from './components/Admin';
 
 function App() {
   return (
-    <Router>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container">
-          <Link to="/" className="navbar-brand">Parking Application</Link>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link to="/" className="nav-link">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/register" className="nav-link">Register</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/admin" className="nav-link">Admin Panel</Link>
-            </li>
-          </ul>
-        </div>
-      </nav>
+    <>
+      <Navigation />
 
       <div className="container my-4">
-        <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="/register" component={Register} />
-          <Route path="/admin" component={AdminPanel} />
-        </Switch>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
       </div>
-    </Router>
+    </>
   );
 }
 
